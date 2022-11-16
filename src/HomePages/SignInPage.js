@@ -3,6 +3,7 @@ import { useState } from "react";
 import logo from "../assets/wallet.png";
 import { PropagateLoader } from "react-spinners";
 import {Link, useNavigate} from "react-router-dom";
+import HomePage from "../components/HomePage";
 
 export default function SignInPage() {
   const [loading, setLoading] = useState(false);
@@ -18,13 +19,7 @@ export default function SignInPage() {
   return (
     <>
       {!loading && (
-        <PageContainer>
-            
-          <Title>
-            <img alt="logo" src={logo} />
-            MyWallet
-          </Title>
-
+        <HomePage>
           <SignInForm onSubmit={sendForm}>
             <input
               onChange={handleForm}
@@ -42,16 +37,10 @@ export default function SignInPage() {
             />
             <SubmitButton color={"#a328d6"}>Entrar</SubmitButton>
           </SignInForm>
-          <StyledLink>Primeira vez? Cadastre-se!</StyledLink>
-          <div> Icons made by <a href="https://www.flaticon.com/authors/juicy-fish" title="juicy_fish"> juicy_fish </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-        </PageContainer>
+        </HomePage>
       )}
       {loading && (
-        <PageContainer>
-          <Title>
-            <img alt="logo" src={logo} />
-            MyWallet
-          </Title>
+        <HomePage>
           <SignInForm disabled>
             <input placeholder="E-mail" disabled />
             <input disabled placeholder="Senha" />
@@ -59,42 +48,12 @@ export default function SignInPage() {
               <PropagateLoader color="white" size={8} />
             </SubmitButton>
           </SignInForm>
-          <StyledLink>Primeira vez? Cadastre-se!</StyledLink>
-        </PageContainer>
+        </HomePage>
       )}
     </>
   );
 }
 
-const PageContainer = styled.div`
-  background-color: #915fbf;
-  display: flex;
-  align-items: center;
-  height: 177.5vw;
-  flex-direction: column;
-  div:last-child{
-    color: white;
-    font-family: "Raleway";
-    font-size: 14px;
-    a{
-        color: lightgrey;
-    }
-  }
-`;
-
-const Title = styled.h1`
-  font-family: "Saira Stencil One";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  color: #ffffff;
-  margin-bottom: 24px;
-  margin-top: 159px;
-  img {
-    width: 32.5px;
-    margin-right: 10px;
-  }
-`;
 
 const SignInForm = styled.form`
   display: flex;
@@ -144,13 +103,4 @@ const SubmitButton = styled.button`
       left: 20;
     }
   }
-`;
-
-const StyledLink = styled(Link)`
-  font-family: "Raleway";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 15px;
-  color: white;
-  margin-bottom: 180px;
 `;
