@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
-import logo from "../assets/digital-wallet.png";
+import logo from "../assets/wallet.png";
 import { PropagateLoader } from "react-spinners";
 import {Link, useNavigate} from "react-router-dom";
 
@@ -19,6 +19,7 @@ export default function SignInPage() {
     <>
       {!loading && (
         <PageContainer>
+            
           <Title>
             <img alt="logo" src={logo} />
             MyWallet
@@ -30,16 +31,19 @@ export default function SignInPage() {
               placeholder="E-mail"
               name="email"
               type="email"
+              required
             />
             <input
               onChange={handleForm}
               placeholder="Senha"
               name="password"
               type="password"
+              required
             />
             <SubmitButton color={"#a328d6"}>Entrar</SubmitButton>
           </SignInForm>
           <StyledLink>Primeira vez? Cadastre-se!</StyledLink>
+          <div> Icons made by <a href="https://www.flaticon.com/authors/juicy-fish" title="juicy_fish"> juicy_fish </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
         </PageContainer>
       )}
       {loading && (
@@ -66,8 +70,16 @@ const PageContainer = styled.div`
   background-color: #915fbf;
   display: flex;
   align-items: center;
-  height: 200vw;
+  height: 177.5vw;
   flex-direction: column;
+  div:last-child{
+    color: white;
+    font-family: "Raleway";
+    font-size: 14px;
+    a{
+        color: lightgrey;
+    }
+  }
 `;
 
 const Title = styled.h1`
@@ -79,7 +91,7 @@ const Title = styled.h1`
   margin-bottom: 24px;
   margin-top: 159px;
   img {
-    width: 32px;
+    width: 32.5px;
     margin-right: 10px;
   }
 `;
@@ -99,7 +111,7 @@ const SignInForm = styled.form`
     font-size: 20px;
     font-weight: 400;
     ::placeholder {
-      color: #a328d6;
+      color: #d096f7;
     }
     :disabled {
       background-color: #f4e5ff;
@@ -140,4 +152,5 @@ const StyledLink = styled(Link)`
   font-weight: 700;
   font-size: 15px;
   color: white;
+  margin-bottom: 180px;
 `;

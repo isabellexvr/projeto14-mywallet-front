@@ -1,12 +1,15 @@
 import SignInPage from "./HomePages/SignInPage";
 import GlobalStyle from "./assets/css/GlobalStyle";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <SignInPage />
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<SignInPage />}/>
+    </Routes>
       <GlobalStyle />
-    </>
+    </BrowserRouter>
   );
 }
 
