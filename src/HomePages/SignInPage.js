@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useState } from "react";
-import logo from "../assets/wallet.png";
 import { PropagateLoader } from "react-spinners";
 import {Link, useNavigate} from "react-router-dom";
 import HomePage from "../components/HomePage";
@@ -37,6 +36,7 @@ export default function SignInPage() {
             />
             <SubmitButton color={"#a328d6"}>Entrar</SubmitButton>
           </SignInForm>
+          <StyledLink to="sign-up">Primeira vez? Cadastre-se!</StyledLink>
         </HomePage>
       )}
       {loading && (
@@ -48,12 +48,12 @@ export default function SignInPage() {
               <PropagateLoader color="white" size={8} />
             </SubmitButton>
           </SignInForm>
+          <StyledLink to="sign-up" disabled>Primeira vez? Cadastre-se!</StyledLink>
         </HomePage>
       )}
     </>
   );
 }
-
 
 const SignInForm = styled.form`
   display: flex;
@@ -103,4 +103,13 @@ const SubmitButton = styled.button`
       left: 20;
     }
   }
+`;
+
+const StyledLink = styled(Link)`
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  color: white;
+  text-decoration: none;
 `;
