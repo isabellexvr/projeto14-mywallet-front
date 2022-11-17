@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { PropagateLoader } from "react-spinners";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HomePage from "../components/HomePage";
+import axios from "axios";
 
 export default function SignInPage() {
   const [loading, setLoading] = useState(false);
@@ -11,9 +12,11 @@ export default function SignInPage() {
   function handleForm({ target: { value, name } }) {
     setForm({ ...form, [name]: value });
   }
+
   function sendForm(e) {
     e.preventDefault();
     setLoading(true);
+    axios.post("https://localhost:5000")
   }
   return (
     <>
@@ -36,7 +39,7 @@ export default function SignInPage() {
             />
             <SubmitButton color={"#a328d6"}>Entrar</SubmitButton>
           </SignInForm>
-          <StyledLink to="sign-up">Primeira vez? Cadastre-se!</StyledLink>
+          <StyledLink to="/sign-up">Primeira vez? Cadastre-se!</StyledLink>
         </HomePage>
       )}
       {loading && (
@@ -48,7 +51,9 @@ export default function SignInPage() {
               <PropagateLoader color="white" size={8} />
             </SubmitButton>
           </SignInForm>
-          <StyledLink to="sign-up" disabled>Primeira vez? Cadastre-se!</StyledLink>
+          <StyledLink to="sign-up" disabled>
+            Primeira vez? Cadastre-se!
+          </StyledLink>
         </HomePage>
       )}
     </>

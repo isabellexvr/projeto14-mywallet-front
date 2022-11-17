@@ -51,7 +51,7 @@ export default function SignUpPage() {
             />
             <SubmitButton color={"#a328d6"}>Cadastrar</SubmitButton>
           </SignInForm>
-          <StyledLink to="/">Já tem uma conta? Entre agora!</StyledLink>
+          <StyledLink to="/sign-in">Já tem uma conta? Entre agora!</StyledLink>
         </HomePage>
       )}
       {loading && (

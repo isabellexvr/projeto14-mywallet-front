@@ -24,6 +24,9 @@ const PageContainer = styled.div`
   justify-content: center;
   box-sizing: border-box;
   position: relative;
+  a {
+    text-decoration: none;
+  }
   div:last-child {
     position: absolute;
     bottom: 0;
