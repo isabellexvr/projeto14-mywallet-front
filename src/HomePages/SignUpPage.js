@@ -3,8 +3,10 @@ import HomePage from "../components/HomePage";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
+import axios from "axios";
 
 export default function SignUpPage() {
+  const navigate= useNavigate()
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({});
 
@@ -13,7 +15,27 @@ export default function SignUpPage() {
   }
   function sendForm(e) {
     e.preventDefault();
+
     setLoading(true);
+    if (form.password === form.confirmPassword) {
+      delete form.confirmPassword
+      console.log(form);
+      axios
+        .post("http://localhost:5000/sign-up", form)
+        .then((answer) => {
+          console.log(answer);
+          alert(answer.data);
+          navigate("/sign-in")
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+          alert(err.response.data)
+          setLoading(false)
+        });
+    } else {
+      alert("As senhas não coindidem.");
+      setLoading(false);
+    }
   }
 
   return (
@@ -45,7 +67,7 @@ export default function SignUpPage() {
             <input
               onChange={handleForm}
               placeholder="Confirme a senha"
-              name="password"
+              name="confirmPassword"
               type="password"
               required
             />
@@ -109,6 +131,10 @@ const SubmitButton = styled.button`
   justify-content: center;
   align-items: center;
   position: relative;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
   div {
     position: absolute;
     position: relative;

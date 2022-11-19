@@ -6,7 +6,7 @@ export default function WelcomePage() {
   return (
     <HomePage>
       <Link to="/sign-in">
-        <SubmitButton>Entrar</SubmitButton>
+        <SubmitButton>Iniciar</SubmitButton>
       </Link>
     </HomePage>
   );
@@ -26,6 +26,10 @@ const SubmitButton = styled.button`
   align-items: center;
   position: relative;
   color: #a328d6;
+  font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
   div {
     position: absolute;
     position: relative;

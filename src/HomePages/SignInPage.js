@@ -4,10 +4,22 @@ import { PropagateLoader } from "react-spinners";
 import { Link, useNavigate } from "react-router-dom";
 import HomePage from "../components/HomePage";
 import axios from "axios";
+import { useToken } from "../contexts/Token";
 
 export default function SignInPage() {
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({});
+
+  const { setToken } = useToken();
+
+/*   const isLogged = localStorage.getItem("data");
+  if (isLogged) {
+    const data = JSON.parse(isLogged);
+    setToken(data.token);
+    navigate("/main");
+  } */
 
   function handleForm({ target: { value, name } }) {
     setForm({ ...form, [name]: value });
@@ -16,7 +28,16 @@ export default function SignInPage() {
   function sendForm(e) {
     e.preventDefault();
     setLoading(true);
-    axios.post("https://localhost:5000")
+
+    axios.post("http://localhost:5000/sign-in", form).then((answer) => {
+      console.log(answer.data.message)
+      navigate("/");
+      setToken(answer.data.token);
+
+    }).catch(err =>{
+      alert(err.response.data)
+      setLoading(false)
+    });
   }
   return (
     <>
@@ -97,6 +118,10 @@ const SubmitButton = styled.button`
   justify-content: center;
   align-items: center;
   position: relative;
+  font-family: "Raleway";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
   div {
     position: absolute;
     position: relative;
