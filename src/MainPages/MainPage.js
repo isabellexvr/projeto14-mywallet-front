@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MdExitToApp } from "react-icons/md";
-import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlineDelete } from "react-icons/ai";
 import { useState } from "react";
 
 const entrysAndOutputs = [
@@ -10,10 +10,10 @@ const entrysAndOutputs = [
 ];
 
 export default function MainPage() {
-  const [registries, setRegistries] = useState(["a"]);
+  const [registries, setRegistries] = useState([""]);
   return (
     <>
-      {!registries && (
+      {!registries.length && (
         <PageContainer>
           <HeaderStyle>
             <h1>Olá, Fulano</h1>
@@ -35,7 +35,7 @@ export default function MainPage() {
           </ButtonsContainer>
         </PageContainer>
       )}
-      {registries && (
+      {registries.length && (
         <PageContainer>
           <HeaderStyle>
             <h1>Olá, Fulano</h1>
@@ -48,10 +48,10 @@ export default function MainPage() {
                   <h2>{t.date}</h2>
                   <p>{t.description}</p>
                 </div>
-
                 <Price color={t.type === "entry" ? "#03AC00" : "#C70000"}>
                   {t.price}
                 </Price>
+                <AiOutlineDelete/>
               </RegistryStyle>
             ))}
             <Balance>
@@ -176,13 +176,18 @@ const RegistryStyle = styled.div`
       font-size: 16px;
       color: #000000;
       text-align: left;
-      width: 196px;
+      width: 180px;
     }
+  }
+  >svg {
+    color: grey;
+    font-size: 17px;
+    margin-right: 8px;
   }
 `;
 
 const Price = styled.h3`
-  margin-right: 10px;
+ margin-right: 3px;
   color: ${(props) => props.color};
   font-family: "Raleway";
   font-weight: 400;
