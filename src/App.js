@@ -5,6 +5,8 @@ import SignUpPage from "./HomePages/SignUpPage";
 import WelcomePage from "./HomePages/WelcomePage";
 import TokenProvider from "./contexts/Token";
 import MainPage from "./MainPages/MainPage";
+import NewEntryPage from "./MainPages/NewEntryPage";
+import NewOutputPage from "./MainPages/NewOutputPage";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/sign-in" element={<SignInPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/main" element={<MainPage />} />
+          <Route path="/new-entry" element={<NewEntryPage/>}/>
+          <Route path="/new-output" element={<NewOutputPage/>}/>
         </Routes>
         <GlobalStyle />
       </BrowserRouter>
