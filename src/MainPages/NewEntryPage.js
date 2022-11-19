@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import { AiOutlineRollback } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 export default function NewEntryPage() {
+  const navigate = useNavigate();
   return (
     <>
       <PageContainer>
         <HeaderStyle>
           <h1>Nova entrada</h1>
-          <AiOutlineRollback />
+          <AiOutlineRollback onClick={() => navigate("/main")} />
         </HeaderStyle>
         <FormStyle>
           <input name="value" placeholder="Valor" />

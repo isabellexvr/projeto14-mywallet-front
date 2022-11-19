@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import { MdExitToApp } from "react-icons/md";
-import { AiOutlinePlusCircle, AiOutlineMinusCircle, AiOutlineDelete } from "react-icons/ai";
+import {
+  AiOutlinePlusCircle,
+  AiOutlineMinusCircle,
+  AiOutlineDelete,
+} from "react-icons/ai";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const entrysAndOutputs = [
   { date: "24/11", description: "Empréstimo", price: "500,00", type: "entry" },
@@ -10,6 +15,7 @@ const entrysAndOutputs = [
 ];
 
 export default function MainPage() {
+  const navigate = useNavigate();
   const [registries, setRegistries] = useState([""]);
   return (
     <>
@@ -24,11 +30,11 @@ export default function MainPage() {
           </RegistriesStyle>
 
           <ButtonsContainer>
-            <div className="new-entry">
+            <div onClick={() => navigate("/new-entry")} className="new-entry">
               <AiOutlinePlusCircle />
               <h1>Nova entrada</h1>
             </div>
-            <div className="new-output">
+            <div onClick={()=> navigate("/new-output")} className="new-output">
               <AiOutlineMinusCircle />
               <h1>Nova saída</h1>
             </div>
@@ -51,7 +57,7 @@ export default function MainPage() {
                 <Price color={t.type === "entry" ? "#03AC00" : "#C70000"}>
                   {t.price}
                 </Price>
-                <AiOutlineDelete/>
+                <AiOutlineDelete />
               </RegistryStyle>
             ))}
             <Balance>
@@ -60,11 +66,11 @@ export default function MainPage() {
             </Balance>
           </RegistriesStyle>
           <ButtonsContainer>
-            <div className="new-entry">
+            <div onClick={() => navigate("/new-entry")} className="new-entry">
               <AiOutlinePlusCircle />
               <h1>Nova entrada</h1>
             </div>
-            <div className="new-output">
+            <div onClick={()=> navigate("/new-output")} className="new-output">
               <AiOutlineMinusCircle />
               <h1>Nova saída</h1>
             </div>
@@ -179,7 +185,7 @@ const RegistryStyle = styled.div`
       width: 180px;
     }
   }
-  >svg {
+  > svg {
     color: grey;
     font-size: 17px;
     margin-right: 8px;
@@ -187,7 +193,7 @@ const RegistryStyle = styled.div`
 `;
 
 const Price = styled.h3`
- margin-right: 3px;
+  margin-right: 3px;
   color: ${(props) => props.color};
   font-family: "Raleway";
   font-weight: 400;
