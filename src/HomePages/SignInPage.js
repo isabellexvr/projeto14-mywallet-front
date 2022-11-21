@@ -36,9 +36,7 @@ export default function SignInPage() {
     axios
       .post("http://localhost:5000/sign-in", form)
       .then((answer) => {
-        console.log(answer.data.message);
         navigate("/main");
-        console.log(answer.data);
         setUsername(answer.data.name);
         setToken(answer.data.token);
         const serializedToken = JSON.stringify(answer.data);

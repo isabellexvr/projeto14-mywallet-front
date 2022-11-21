@@ -22,7 +22,6 @@ export default function SignUpPage() {
       axios
         .post("http://localhost:5000/sign-up", form)
         .then((answer) => {
-          console.log(answer);
           alert(answer.data);
           navigate("/sign-in")
         })

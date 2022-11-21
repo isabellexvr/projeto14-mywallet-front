@@ -13,22 +13,30 @@ import { useToken } from "../contexts/Token";
 
 export default function MainPage() {
   const { username } = useUsername();
-  const {token} = useToken()
+  const { token } = useToken();
 
   const navigate = useNavigate();
   const [registries, setRegistries] = useState([]);
 
+  let plus = 0;
+  registries.forEach((r) => {
+    if (r.type === "entry") {
+      plus += parseInt(r.value);
+    } else {
+      plus -= parseInt(r.value);
+    }
+  });
   useEffect(() => {
-
-    axios.get("http://localhost:5000/registries", {
-      headers: { "Authorization": "Bearer " + token }
-  })
-    .then( answer => {
-      setRegistries(answer.data)
-    })
-    .catch( err => {
-      console.log(err.response.data)
-    })
+    axios
+      .get("http://localhost:5000/registries", {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((answer) => {
+        setRegistries(answer.data);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   }, [registries, token]);
 
   return (
@@ -84,9 +92,9 @@ export default function MainPage() {
                 <AiOutlineDelete />
               </RegistryStyle>
             ))}
-            <Balance>
+            <Balance isInteger={plus > 0 ? "#03AC00" : "#C70000"}>
               <h1>SALDO</h1>
-              <p>21312,12</p>
+              <p>{plus}</p>
             </Balance>
           </RegistriesStyle>
           <ButtonsContainer>
@@ -245,6 +253,6 @@ const Balance = styled.div`
     font-weight: 400;
     font-size: 17px;
     text-align: right;
-    color: #03ac00;
+    color: ${(props) => props.isInteger};
   }
 `;

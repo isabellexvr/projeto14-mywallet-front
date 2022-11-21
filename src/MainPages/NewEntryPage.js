@@ -38,7 +38,6 @@ export default function NewEntryPage() {
         }
       )
       .then((answer) => {
-        console.log(answer.data);
         setLoading(false);
         navigate("/main")
       })
