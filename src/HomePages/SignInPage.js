@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import HomePage from "../components/HomePage";
 import axios from "axios";
 import { useToken } from "../contexts/Token";
+import { useUsername } from "../contexts/User";
 
 export default function SignInPage() {
   const navigate = useNavigate();
@@ -13,13 +14,15 @@ export default function SignInPage() {
   const [form, setForm] = useState({});
 
   const { setToken } = useToken();
+  const {setUsername} = useUsername();
 
-/*   const isLogged = localStorage.getItem("data");
+  const isLogged = localStorage.getItem("data");
   if (isLogged) {
     const data = JSON.parse(isLogged);
     setToken(data.token);
     navigate("/main");
-  } */
+    return;
+  }
 
   function handleForm({ target: { value, name } }) {
     setForm({ ...form, [name]: value });
@@ -29,15 +32,21 @@ export default function SignInPage() {
     e.preventDefault();
     setLoading(true);
 
-    axios.post("http://localhost:5000/sign-in", form).then((answer) => {
-      console.log(answer.data.message)
-      navigate("/");
-      setToken(answer.data.token);
-
-    }).catch(err =>{
-      alert(err.response.data)
-      setLoading(false)
-    });
+    axios
+      .post("http://localhost:5000/sign-in", form)
+      .then((answer) => {
+        console.log(answer.data.message);
+        navigate("/main");
+        console.log(answer.data)
+        setUsername(answer.data.name);
+        setToken(answer.data.token);
+        const serializedToken = JSON.stringify(answer.data);
+        localStorage.setItem("data", serializedToken);
+      })
+      .catch((err) => {
+        alert(err.response.data);
+        setLoading(false);
+      });
   }
   return (
     <>

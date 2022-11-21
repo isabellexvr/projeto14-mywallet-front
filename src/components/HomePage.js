@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import logo from "../assets/wallet.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function HomePage({children}) {
+export default function HomePage({ children }) {
   return (
     <PageContainer>
       <Title>
@@ -10,16 +10,34 @@ export default function HomePage({children}) {
         MyWallet
       </Title>
       {children}
-          <div> Icons made by <a href="https://www.flaticon.com/authors/juicy-fish" title="juicy_fish"> juicy_fish </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      <div>
+        {" "}
+        Icons made by{" "}
+        <a
+          href="https://www.flaticon.com/authors/juicy-fish"
+          title="juicy_fish"
+        >
+          {" "}
+          juicy_fish{" "}
+        </a>{" "}
+        from{" "}
+        <a href="https://www.flaticon.com/" title="Flaticon">
+          www.flaticon.com
+        </a>
+      </div>
     </PageContainer>
   );
 }
 
 const PageContainer = styled.div`
+  @media (max-width: 700px) {
+    height: 177.5vw;
+  }
+  height: 48.9vw;
   background-color: #915fbf;
   display: flex;
   align-items: center;
-  height: 177.5vw;
+
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
@@ -52,4 +70,3 @@ const Title = styled.h1`
     margin-right: 10px;
   }
 `;
-

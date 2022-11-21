@@ -7,6 +7,7 @@ import {
 } from "react-icons/ai";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUsername } from "../contexts/User";
 
 const entrysAndOutputs = [
   { date: "24/11", description: "Empréstimo", price: "500,00", type: "entry" },
@@ -15,6 +16,8 @@ const entrysAndOutputs = [
 ];
 
 export default function MainPage() {
+  const { username } = useUsername();
+
   const navigate = useNavigate();
   const [registries, setRegistries] = useState([""]);
   return (
@@ -22,8 +25,13 @@ export default function MainPage() {
       {!registries.length && (
         <PageContainer>
           <HeaderStyle>
-            <h1>Olá, Fulano</h1>
-            <MdExitToApp />
+            <h1>Olá, {username}</h1>
+            <MdExitToApp
+              onClick={() => {
+                localStorage.removeItem("data");
+                navigate("/");
+              }}
+            />
           </HeaderStyle>
           <RegistriesStyle display={"flex"}>
             <h1>Não há registros de entrada ou saída</h1>
@@ -34,7 +42,7 @@ export default function MainPage() {
               <AiOutlinePlusCircle />
               <h1>Nova entrada</h1>
             </div>
-            <div onClick={()=> navigate("/new-output")} className="new-output">
+            <div onClick={() => navigate("/new-output")} className="new-output">
               <AiOutlineMinusCircle />
               <h1>Nova saída</h1>
             </div>
@@ -44,8 +52,13 @@ export default function MainPage() {
       {registries.length && (
         <PageContainer>
           <HeaderStyle>
-            <h1>Olá, Fulano</h1>
-            <MdExitToApp />
+            <h1>Olá, {username}</h1>
+            <MdExitToApp
+              onClick={() => {
+                localStorage.removeItem("data");
+                navigate("/");
+              }}
+            />
           </HeaderStyle>
           <RegistriesStyle paddingTop={"23px"} display={"initial"}>
             {entrysAndOutputs.map((t) => (
@@ -70,7 +83,7 @@ export default function MainPage() {
               <AiOutlinePlusCircle />
               <h1>Nova entrada</h1>
             </div>
-            <div onClick={()=> navigate("/new-output")} className="new-output">
+            <div onClick={() => navigate("/new-output")} className="new-output">
               <AiOutlineMinusCircle />
               <h1>Nova saída</h1>
             </div>
