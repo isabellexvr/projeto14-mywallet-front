@@ -14,12 +14,13 @@ export default function SignInPage() {
   const [form, setForm] = useState({});
 
   const { setToken } = useToken();
-  const {setUsername} = useUsername();
+  const { setUsername } = useUsername();
 
   const isLogged = localStorage.getItem("data");
   if (isLogged) {
     const data = JSON.parse(isLogged);
     setToken(data.token);
+    setUsername(data.name)
     navigate("/main");
     return;
   }
@@ -37,7 +38,7 @@ export default function SignInPage() {
       .then((answer) => {
         console.log(answer.data.message);
         navigate("/main");
-        console.log(answer.data)
+        console.log(answer.data);
         setUsername(answer.data.name);
         setToken(answer.data.token);
         const serializedToken = JSON.stringify(answer.data);

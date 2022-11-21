@@ -19,7 +19,6 @@ export default function SignUpPage() {
     setLoading(true);
     if (form.password === form.confirmPassword) {
       delete form.confirmPassword
-      console.log(form);
       axios
         .post("http://localhost:5000/sign-up", form)
         .then((answer) => {

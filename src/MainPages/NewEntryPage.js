@@ -1,22 +1,76 @@
 import styled from "styled-components";
 import { AiOutlineRollback } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useUsername } from "../contexts/User";
+import { useState } from "react";
 
 export default function NewEntryPage() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({});
+  const {username} = useUsername();
+
+  function handleForm({ target: { value, name } }) {
+    setForm({ ...form, [name]: value });
+  }
+
+  function sendForm(e) {
+    e.preventDefault();
+    setLoading(true);
+    axios
+      .post("http://localhost:5000/post-registry", {
+        ...form,
+        name: username,
+        type: "entry",
+      })
+      .then((answer) => {
+        console.log(answer.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <>
-      <PageContainer>
-        <HeaderStyle>
-          <h1>Nova entrada</h1>
-          <AiOutlineRollback onClick={() => navigate("/main")} />
-        </HeaderStyle>
-        <FormStyle>
-          <input name="value" placeholder="Valor" />
-          <input name="description" placeholder="Descrição" />
-          <button>Salvar entrada</button>
-        </FormStyle>
-      </PageContainer>
+      {!loading && (
+        <PageContainer>
+          <HeaderStyle>
+            <h1>Nova entrada</h1>
+            <AiOutlineRollback onClick={() => navigate("/main")} />
+          </HeaderStyle>
+          <FormStyle onSubmit={sendForm}>
+            <input
+              onChange={handleForm}
+              name="value"
+              placeholder="Valor"
+              type="number"
+              required
+            />
+            <input
+              onChange={handleForm}
+              name="description"
+              placeholder="Descrição"
+              required
+            />
+            <button>Salvar entrada</button>
+          </FormStyle>
+        </PageContainer>
+      )}
+      {loading && (
+        <PageContainer>
+          <HeaderStyle>
+            <h1>Nova entrada</h1>
+            <AiOutlineRollback />
+          </HeaderStyle>
+          <FormStyle onSubmit={sendForm}>
+            <input placeholder="Valor" disabled />
+            <input placeholder="Descrição" disabled />
+            <button disabled>Salvar entrada</button>
+          </FormStyle>
+        </PageContainer>
+      )}
     </>
   );
 }

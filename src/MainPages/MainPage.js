@@ -5,9 +5,11 @@ import {
   AiOutlineMinusCircle,
   AiOutlineDelete,
 } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUsername } from "../contexts/User";
+import axios from "axios";
+import { useToken } from "../contexts/Token";
 
 const entrysAndOutputs = [
   { date: "24/11", description: "Empréstimo", price: "500,00", type: "entry" },
@@ -17,9 +19,28 @@ const entrysAndOutputs = [
 
 export default function MainPage() {
   const { username } = useUsername();
+  const {token} = useToken()
+
 
   const navigate = useNavigate();
   const [registries, setRegistries] = useState([""]);
+
+  
+
+  useEffect(() => {
+
+    axios.get("http://localhost:5000/registries", {
+      headers: { "Authorization": "Bearer " + token }
+  })
+    .then( answer => {
+      console.log(answer.data)
+      setRegistries(answer.data)
+    })
+    .catch( err => {
+      console.log(err.response.data)
+    })
+  }, []);
+
   return (
     <>
       {!registries.length && (
