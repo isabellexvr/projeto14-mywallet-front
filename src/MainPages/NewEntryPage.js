@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUsername } from "../contexts/User";
 import { useState } from "react";
+import { useToken } from "../contexts/Token";
 
 export default function NewEntryPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({});
-  const {username} = useUsername();
+  const { username } = useUsername();
+  const { token } = useToken();
 
   function handleForm({ target: { value, name } }) {
     setForm({ ...form, [name]: value });
@@ -18,17 +20,31 @@ export default function NewEntryPage() {
   function sendForm(e) {
     e.preventDefault();
     setLoading(true);
+
+    const newForm = { ...form }
+    const currency = new Intl.NumberFormat("en-US", {style: "currency", currency:"USD"})
+    currency.format(newForm.value)
+
     axios
-      .post("http://localhost:5000/post-registry", {
-        ...form,
-        name: username,
-        type: "entry",
-      })
+      .post(
+        "http://localhost:5000/post-registry",
+        {
+          ...newForm,
+          name: username,
+          type: "entry",
+        },
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      )
       .then((answer) => {
         console.log(answer.data);
+        setLoading(false);
+        navigate("/main")
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
+        setLoading(false);
       });
   }
 
@@ -45,7 +61,6 @@ export default function NewEntryPage() {
               onChange={handleForm}
               name="value"
               placeholder="Valor"
-              type="number"
               required
             />
             <input

@@ -11,21 +11,12 @@ import { useUsername } from "../contexts/User";
 import axios from "axios";
 import { useToken } from "../contexts/Token";
 
-const entrysAndOutputs = [
-  { date: "24/11", description: "Empréstimo", price: "500,00", type: "entry" },
-  { date: "20/11", description: "Almoço mãe", price: "39,90", type: "output" },
-  { date: "10/11", description: "Almoço só", price: "29,90", type: "output" },
-];
-
 export default function MainPage() {
   const { username } = useUsername();
   const {token} = useToken()
 
-
   const navigate = useNavigate();
-  const [registries, setRegistries] = useState([""]);
-
-  
+  const [registries, setRegistries] = useState([]);
 
   useEffect(() => {
 
@@ -33,13 +24,12 @@ export default function MainPage() {
       headers: { "Authorization": "Bearer " + token }
   })
     .then( answer => {
-      console.log(answer.data)
       setRegistries(answer.data)
     })
     .catch( err => {
       console.log(err.response.data)
     })
-  }, []);
+  }, [registries, token]);
 
   return (
     <>
@@ -82,14 +72,14 @@ export default function MainPage() {
             />
           </HeaderStyle>
           <RegistriesStyle paddingTop={"23px"} display={"initial"}>
-            {entrysAndOutputs.map((t) => (
+            {registries.map((t) => (
               <RegistryStyle>
                 <div>
                   <h2>{t.date}</h2>
                   <p>{t.description}</p>
                 </div>
                 <Price color={t.type === "entry" ? "#03AC00" : "#C70000"}>
-                  {t.price}
+                  {t.value}
                 </Price>
                 <AiOutlineDelete />
               </RegistryStyle>
