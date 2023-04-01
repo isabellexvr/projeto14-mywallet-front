@@ -31,9 +31,9 @@ export default function HomePage({ children }) {
 
 const PageContainer = styled.div`
   @media (max-width: 700px) {
-    height: 177.5vw;
+    height: 100vh;
   }
-  height: 48.9vw;
+  height: 100vh;
   background-color: #915fbf;
   display: flex;
   align-items: center;
@@ -47,7 +47,7 @@ const PageContainer = styled.div`
   }
   div:last-child {
     position: absolute;
-    bottom: 0;
+    bottom: 1px;
     color: white;
     font-family: "Raleway";
     font-size: 14px;
