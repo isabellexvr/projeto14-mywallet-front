@@ -28,7 +28,7 @@ export default function MainPage() {
   });
   useEffect(() => {
     axios
-      .get("http://localhost:5000/registries", {
+      .get(process.env.REACT_APP_API_BASE_URL + "/registries", {
         headers: { Authorization: "Bearer " + token },
       })
       .then((answer) => {

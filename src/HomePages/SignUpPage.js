@@ -20,7 +20,7 @@ export default function SignUpPage() {
     if (form.password === form.confirmPassword) {
       delete form.confirmPassword
       axios
-        .post("http://localhost:5000/sign-up", form)
+        .post(process.env.REACT_APP_API_BASE_URL + "/sign-up", form)
         .then((answer) => {
           alert(answer.data);
           navigate("/sign-in")

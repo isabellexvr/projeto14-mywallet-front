@@ -20,7 +20,7 @@ export default function SignInPage() {
   if (isLogged) {
     const data = JSON.parse(isLogged);
     setToken(data.token);
-    setUsername(data.name)
+    setUsername(data.name);
     navigate("/main");
     return;
   }
@@ -34,7 +34,7 @@ export default function SignInPage() {
     setLoading(true);
 
     axios
-      .post("http://localhost:5000/sign-in", form)
+      .post(process.env.REACT_APP_API_BASE_URL + "/sign-in", form)
       .then((answer) => {
         navigate("/main");
         setUsername(answer.data.name);

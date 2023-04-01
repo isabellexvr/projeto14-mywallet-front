@@ -27,7 +27,7 @@ export default function NewEntryPage() {
 
     axios
       .post(
-        "http://localhost:5000/post-registry",
+        process.env.REACT_APP_API_BASE_URL + "/post-registry",
         {
           ...newForm,
           name: username,
