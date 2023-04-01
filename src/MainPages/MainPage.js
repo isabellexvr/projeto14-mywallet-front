@@ -107,6 +107,7 @@ export default function MainPage() {
               <h1>Nova saída</h1>
             </div>
           </ButtonsContainer>
+
         </PageContainer>
       )}
     </>
@@ -134,7 +135,7 @@ const HeaderStyle = styled.div`
 const PageContainer = styled.div`
   background-color: #915fbf;
   align-items: center;
-  height: 177.5vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
