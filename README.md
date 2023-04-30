@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# My Wallet: Aplicação de Gerenciamento de Finanças
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img width="220px" align="right" src="./mywallet.gif"/>
+<h2>Sobre:</h2>
 
-## Available Scripts
+<div text-align="center" align="left">
+<p>Trata-se de um aplicativo web cujo objetivo é acompanhar os seus rendimentos e gastos através de entradas e saídas criadas no aplicativo, o qual calculará, ao fim, o seu montante final. </p>
+</div>
 
-In the project directory, you can run:
+<div align="left">
+<h2>Principais Funcionalidades:</h2>
 
-### `npm start`
+<ul align="left">
+ <li align="left">👤 Criação de Usuário + Login/Logout</li>
+ <li align="left">📅 Criação de <strong>Entradas</strong> e <strong>Saídas</strong></li>
+ <li align="left">❌ Deleção de <strong>Entradas</strong> e <strong>Saídas</strong></li>
+ <li align="left">📜 Listagem de todos os eventos financeiros do usuário</li>
+ <li align="left">➗ Cálculo final das entradas menos as saídas</li>
+</ul>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</div>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<div align="left">
+<h2>Link para Demo:</h2>
+Clique aqui para acessar => <a href="https://projeto14-mywallet-front-eight-olive.vercel.app">My Wallet</a>
+</div>
 
-### `npm test`
+<div align="left">
+<h2>Como foi feito:</h2>
+<p>Foi desenvolvido em ReactJS, utilizando, principalmente, das bibliotecas React Router Dom e Styled Components, e consumindo e gravando dados vindos da API <a href="https://github.com/isabellexvr/projeto14-mywallet-back" >My Wallet Back End</a>, que trás informações de um banco de dados NoSQL, MongoDB. </p>
+<h4>Stack de Tecnologias Utilizadas para o Front End:</h4>
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"/>
+<img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
+<img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
+<h4>Por que foi feito?</h4>
+<p>Foi o meu primeiro projeto Full Stack, em que exercitei os meus aprendizados em MongoDB, Express.js e ReactJS. </p>
+</div>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Como executar para desenvolvimento no Seu Computador
 
-### `npm run build`
+1. Baixe e execute o <a href="https://github.com/isabellexvr/projeto14-mywallet-back" >My Wallet Back End</a> conforme as instruções do README do repositório
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+2. Instale as dependências do Front End:
+```bash
+npm i
+```
+3. Execute-o:
+```bash
+npm start
+```
+4. Ou, opcionalmente, você pode buildá-lo:
+```bash
+npm run build
+```
+5. E, então, acessar http://localhost:3000
