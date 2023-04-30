@@ -1,6 +1,6 @@
 # My Wallet: Aplicação de Gerenciamento de Finanças
 
-<img width="220px" align="right" src="./mywallet.gif"/>
+<img width="280px" align="right" src="./mywallet.gif"/>
 <h2>Sobre:</h2>
 
 <div text-align="center" align="left">
